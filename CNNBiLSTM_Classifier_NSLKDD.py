@@ -23,12 +23,12 @@ from keras.utils import to_categorical
 from scipy.stats import zscore
 from imblearn.over_sampling import SMOTE
 from collections import Counter
-
+import time
 print(pd.__version__)
 print(np.__version__)
 print(sys.version)
 print(sklearn.__version__)
-
+seconds = time.time()
 #*******************************************
 #read datases
 pd.set_option('display.max_columns',None)
@@ -153,7 +153,7 @@ def cnnbilstm():
     return model
 
 # create model
-my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)
+my_model = KerasClassifier(model=cnnbilstm, epochs=20, batch_size=32, verbose=1)
 
 # Create the model
 my_model1 = cnnbilstm()
@@ -178,6 +178,7 @@ accuracies = []
 f1_scores = []
 precisions = []
 conf_matrices = []
+recalls =[]
 
 for train_idx, test_idx in cv.split(X, Y):
     X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
@@ -188,17 +189,21 @@ for train_idx, test_idx in cv.split(X, Y):
     
     # Predict on test data
     y_pred = pipeline.predict(X_test)
-    
+    print("\n operation time: = ",time.time()- seconds ,"secs \n")
+
+
     # Calculate evaluation metrics
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average='weighted')
     precision = precision_score(y_test, y_pred, average='weighted')
     conf_matrix = confusion_matrix(y_test, y_pred)
+    recall = recall_score(y_test, y_pred, average='weighted')
     
     accuracies.append(accuracy)
     f1_scores.append(f1)
     precisions.append(precision)
     conf_matrices.append(conf_matrix)
+    recalls.append(recall)
 
 # Predict probabilities for each class
 y_prob = pipeline.predict_proba(X_test)
@@ -233,16 +238,17 @@ plt.show()
 mean_accuracy = np.mean(accuracies)
 mean_f1 = np.mean(f1_scores)
 mean_precision = np.mean(precisions)
+recall = np.mean(recalls)
 
 # Print accuracy for each fold
 for fold_num, accuracy in enumerate(accuracies, start=1):
     print(f"Accuracy for Fold {fold_num}: {accuracy}")
 
 # Print results
-print("Mean Accuracy:", mean_accuracy)
-print("Mean F1 Score:", mean_f1)
-print("Mean Precision:", mean_precision)
- 
+print("Mean Accuracy: ", mean_accuracy)
+print("Mean F1 Score: ", mean_f1)
+print("Mean Precision: ", mean_precision)
+print("recall: ", recall)
 # Calculate and print overall confusion matrix
 overall_conf_matrix = sum(conf_matrices)
 print("Overall Confusion Matrix:\n", overall_conf_matrix)
@@ -256,11 +262,15 @@ print("Classification Report:\n", classification_rep)
 evaluation_results = pd.DataFrame({
     'Accuracy': accuracies,
     'F1 Score': f1_scores,
-    'Precision': precisions
+    'Precision': precisions,
+    'recall' : recalls
+
 })
 
 # Create a bar plot for accuracy per fold
 sns.barplot(x=np.arange(1, len(accuracies)+1), y=accuracies)
+# Set the y-axis limits to start at y=0.90
+plt.ylim(0.90, max(accuracies) + 0.05)  # Adjust the upper limit as needed
 plt.xlabel('Fold')
 plt.ylabel('Accuracy')
 plt.title('Accuracy per Fold')
