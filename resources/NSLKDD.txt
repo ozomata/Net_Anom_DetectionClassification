@@ -12,6 +12,7 @@ Mean Precision: 0.9887549107881952
 cv = StratifiedKFold(n_splits=5, random_state=17, shuffle=True)
 my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)
 
+operation time: =  2561.300252199173 secs
 
 Original dataset shape Counter({'Normal': 77232, 'DoS': 53387, 'Probe': 14077, 'R2L': 3702, 'U2R': 119})
 Resample dataset shape Counter({'Normal': 77232, 'DoS': 77232, 'R2L': 77232, 'Probe': 77232, 'U2R': 77232})
