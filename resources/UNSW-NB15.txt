@@ -1,0 +1,20 @@
+UNSW-NB15
+
+
+Accuracy for Fold 1: 0.8076452896090036
+Accuracy for Fold 2: 0.8123605316775008
+Accuracy for Fold 3: 0.807548268167265
+Accuracy for Fold 4: 0.8061473978344394
+Accuracy for Fold 5: 0.8102029727946598
+Mean Accuracy: 0.8087808920165738
+Mean F1 Score: 0.7798295235207029
+Mean Precision: 0.7983956130899483
+
+
+Original dataset shape Counter({'Normal': 93000, 'Generic': 58871, 'Exploits': 44525, 'Fuzzers': 24246, 'DoS': 16353, 'Reconnaissance': 13987, 'Analysis': 2677, 'Backdoor': 2329, 'Shellcode': 1511, 'Worms': 174})
+
+Resample dataset shape Counter({'Normal': 93000, 'Backdoor': 93000, 'Analysis': 93000, 'Fuzzers': 93000, 'Shellcode': 93000, 'Reconnaissance': 93000, 'Exploits': 93000, 'DoS': 93000, 'Worms': 93000, 'Generic': 93000})
+
+cv = StratifiedKFold(n_splits=5, random_state=17, shuffle=True)
+
+my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)

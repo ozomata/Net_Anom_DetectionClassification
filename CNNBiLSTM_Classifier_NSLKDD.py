@@ -146,14 +146,14 @@ def cnnbilstm():
     model.add(BatchNormalization())
     model.add(Bidirectional(LSTM(128, return_sequences=False)))
 
-    model.add(Dropout(0.5))
+    model.add(Dropout(0.2))
     model.add(Dense(5))
     model.add(Activation('softmax'))
     model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
     return model
 
 # create model
-my_model = KerasClassifier(model=cnnbilstm, epochs=20, batch_size=32, verbose=1)
+my_model = KerasClassifier(model=cnnbilstm, epochs=20, batch_size=64, verbose=1)
 
 # Create the model
 my_model1 = cnnbilstm()
@@ -269,8 +269,8 @@ evaluation_results = pd.DataFrame({
 
 # Create a bar plot for accuracy per fold
 sns.barplot(x=np.arange(1, len(accuracies)+1), y=accuracies)
-# Set the y-axis limits to start at y=0.90
-plt.ylim(0.90, max(accuracies) + 0.05)  # Adjust the upper limit as needed
+# Set the y-axis limits to start at y=0.95
+plt.ylim(0.95, max(accuracies) + 0.05)  # Adjust the upper limit as needed
 plt.xlabel('Fold')
 plt.ylabel('Accuracy')
 plt.title('Accuracy per Fold')

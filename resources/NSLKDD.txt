@@ -1,0 +1,19 @@
+NSLKDD
+
+Accuracy for Fold 1: 0.9899003501211958
+Accuracy for Fold 2: 0.9892270401292755
+Accuracy for Fold 3: 0.9891256775409891
+Accuracy for Fold 4: 0.9886206780459886
+Accuracy for Fold 5: 0.9876780123219877
+Mean Accuracy: 0.9889103516318872
+Mean F1 Score: 0.9887687885209182
+Mean Precision: 0.9887549107881952
+
+cv = StratifiedKFold(n_splits=5, random_state=17, shuffle=True)
+my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)
+
+
+Original dataset shape Counter({'Normal': 77232, 'DoS': 53387, 'Probe': 14077, 'R2L': 3702, 'U2R': 119})
+Resample dataset shape Counter({'Normal': 77232, 'DoS': 77232, 'R2L': 77232, 'Probe': 77232, 'U2R': 77232})
+
+Best parameters found:  {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.2}
