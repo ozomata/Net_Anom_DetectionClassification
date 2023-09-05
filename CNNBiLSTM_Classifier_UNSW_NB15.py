@@ -250,7 +250,7 @@ for i, rate in enumerate(detection_rates):
     print(f"{class_labels[i]}: Detection Rate = {rate:.4f}")
 
 # Calculate ing FP and TN per class
-false_positives = [sum(cm[i]) - cm[i][i] for i in range(5)]
+false_positives = [sum(cm[i]) - cm[i][i] for i in range(10)]
 true_negatives = [sum(cm[j][i] for j in range(5)) - cm[i][i] for i in range(5)]
 
 # Calculatinf FPR

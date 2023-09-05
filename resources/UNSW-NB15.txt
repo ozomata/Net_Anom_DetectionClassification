@@ -30,3 +30,16 @@ Best accuracy of: 0.634909 using {'batch_size': 32, 'epochs': 10, 'model__dropou
 0.616044 (0.037054) with: {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.2}
 0.634110 (0.033424) with: {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.5}
 8053/8053 [==============================] - 43s 5ms/step
+
+Dos: Detection Rate = 0.0400
+Normal: Detection Rate = 0.0026
+Prob_Pred: Detection Rate = 0.0569
+R2L: Detection Rate = 0.8968
+U2R: Detection Rate = 0.4959
+Dos: False Positive Rate = 0.9938
+Normal: False Positive Rate = 0.9970
+Prob_Pred: False Positive Rate = 0.9428
+R2L: False Positive Rate = 0.1815
+U2R: False Positive Rate = 0.8549
+Average Detection Rate = 0.2984
+Average False Positive Rate = 0.7940

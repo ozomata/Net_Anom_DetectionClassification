@@ -18,3 +18,16 @@ Original dataset shape Counter({'Normal': 77232, 'DoS': 53387, 'Probe': 14077, '
 Resample dataset shape Counter({'Normal': 77232, 'DoS': 77232, 'R2L': 77232, 'Probe': 77232, 'U2R': 77232})
 
 Best parameters found:  {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.2}
+
+Dos: Detection Rate = 0.9982
+Normal: Detection Rate = 0.9933
+Prob_Pred: Detection Rate = 0.9883
+R2L: Detection Rate = 0.8371
+U2R: Detection Rate = 0.4454
+Dos: False Positive Rate = 0.4352
+Normal: False Positive Rate = 0.3849
+Prob_Pred: False Positive Rate = 0.4672
+R2L: False Positive Rate = 0.6760
+U2R: False Positive Rate = 0.7857
+Average Detection Rate = 0.8525
+Average False Positive Rate = 0.5498
