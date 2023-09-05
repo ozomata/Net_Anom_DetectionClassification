@@ -25,11 +25,11 @@ The implementation phase consists of:
 
 
 
-|OS Name|:|	Microsoft Windows 11 Enterprise|
-|Version	|:|10.0.22621 Build 22621|
-|OS Manufacturer	|:|Microsoft Corporation|
-|Processor|:|	11th Gen Intel(R) Core(TM) i5-11600K @ 3.90GHz, 3912 Mhz, 6 Core(s), 12 Logical Processor(s)|
-|Installed|:| Physical Memory (RAM)	16.0 GB|
+| OS Name ||	Microsoft Windows 11 Enterprise |
+| Version	||10.0.22621 Build 22621 |
+| OS Manufacturer	||Microsoft Corporation |
+| Processor ||	11th Gen Intel(R) Core(TM) i5-11600K @ 3.90GHz, 3912 Mhz, 6 Core(s), 12 Logical Processor(s) |
+| Installed || Physical Memory (RAM)	16.0 GB |
 
 
 
