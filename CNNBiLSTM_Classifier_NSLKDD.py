@@ -250,8 +250,7 @@ print("Mean F1 Score: ", mean_f1)
 print("Mean Precision: ", mean_precision)
 print("recall: ", recall)
 # Calculate and print overall confusion matrix
-overall_conf_matrix = sum(conf_matrices)
-print("Overall Confusion Matrix:\n", overall_conf_matrix)
+
 
 # Generate classification report
 class_names = label_encoder.classes_
@@ -296,13 +295,49 @@ plt.show()
 overall_conf_matrix = sum(conf_matrices)
 
 # Calculate and print overall confusion matrix with class names
-conf_matrix_with_names = pd.DataFrame(overall_conf_matrix, index=class_names, columns=class_names) # Create a DataFrame for the confusion matrix
+cm = sum(conf_matrices)
+print("Overall Confusion Matrix:\n", cm)
+
+
+cm_names = pd.DataFrame(cm, index=class_names, columns=class_names) # Create a DataFrame for the confusion matrix
 
 
 # Visualize the confusion matrix with Seaborn heatmap
 plt.figure(figsize=(10, 8))
-sns.heatmap(conf_matrix_with_names, annot=True, fmt="d", cmap="Blues")
+sns.heatmap(cm_names, annot=True, fmt="d", cmap="Blues")
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.title('Confusion Matrix with Class Names')
 plt.show()
+
+# Define class labels
+class_labels = ['Dos', 'Normal', 'Prob_Pred', 'R2L', 'U2R']
+
+# Calculating the TP
+true_positives = [cm[i][i] for i in range(5)]
+false_negatives = [sum(cm[i]) - true_positives[i] for i in range(5)]
+
+# Applying formula for DR
+detection_rates = [true_positives[i] / (true_positives[i] + false_negatives[i]) for i in range(5)]
+
+# Print DR /class
+for i, rate in enumerate(detection_rates):
+    print(f"{class_labels[i]}: Detection Rate = {rate:.4f}")
+
+# Calculate ing FP and TN per class
+false_positives = [sum(cm[i]) - cm[i][i] for i in range(5)]
+true_negatives = [sum(cm[j][i] for j in range(5)) - cm[i][i] for i in range(5)]
+
+# Calculatinf FPR
+false_positive_rates = [false_positives[i] / (false_positives[i] + true_negatives[i]) for i in range(5)]
+
+# Print FPR /class
+for i, rate in enumerate(false_positive_rates):
+    print(f"{class_labels[i]}: False Positive Rate = {rate:.4f}")
+
+average_detection_rate = sum(detection_rates) / len(detection_rates)
+average_fpr = sum(false_positive_rates) / len(false_positive_rates)
+
+# Print the Average Detection Rate and Average FPR
+print(f"Average Detection Rate = {average_detection_rate:.4f}")
+print(f"Average False Positive Rate = {average_fpr:.4f}")

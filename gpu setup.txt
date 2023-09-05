@@ -1,0 +1,13 @@
+conda create --name tf
+conda activate tf
+#install Jupyter Lab
+#Install juputer notebook
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+pip install "tensorflow<2.11"
+#Test
+python -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+#configure jupyter notebook
+python -m ipykernel install --user --name TF0 --display-name "Python (GPU)"
+
+5T6MC-JP437-DEUSW-BK7GM-NP6CL
