@@ -18,3 +18,15 @@ Resample dataset shape Counter({'Normal': 93000, 'Backdoor': 93000, 'Analysis': 
 cv = StratifiedKFold(n_splits=5, random_state=17, shuffle=True)
 
 my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)
+
+
+Best accuracy of: 0.634909 using {'batch_size': 32, 'epochs': 10, 'model__dropout_rate': 0.5}
+0.619960 (0.028727) with: {'batch_size': 32, 'epochs': 10, 'model__dropout_rate': 0.2}
+0.634909 (0.040619) with: {'batch_size': 32, 'epochs': 10, 'model__dropout_rate': 0.5}
+0.629686 (0.033787) with: {'batch_size': 32, 'epochs': 20, 'model__dropout_rate': 0.2}
+0.625471 (0.052769) with: {'batch_size': 32, 'epochs': 20, 'model__dropout_rate': 0.5}
+0.602729 (0.070036) with: {'batch_size': 64, 'epochs': 10, 'model__dropout_rate': 0.2}
+0.569423 (0.061458) with: {'batch_size': 64, 'epochs': 10, 'model__dropout_rate': 0.5}
+0.616044 (0.037054) with: {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.2}
+0.634110 (0.033424) with: {'batch_size': 64, 'epochs': 20, 'model__dropout_rate': 0.5}
+8053/8053 [==============================] - 43s 5ms/step
