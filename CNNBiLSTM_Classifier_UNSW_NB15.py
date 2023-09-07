@@ -1,3 +1,11 @@
+
+"""""
+Ozomata Asun  
+26218999
+
+Aknowledgment: Part of the dataprocessing and the model definition were gotten from the work of (Sinha and Manollas, 2020)Efficient-CNN-BiLSTM-for-Network-IDS
+
+"""""
 import sys
 import numpy as np 
 from numpy import where
