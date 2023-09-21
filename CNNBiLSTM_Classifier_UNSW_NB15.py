@@ -110,7 +110,7 @@ def cnnbilstm():
 
 
 # create model
-my_model = KerasClassifier(model=cnnbilstm, epochs=10, batch_size=32, verbose=1)
+my_model = KerasClassifier(model=cnnbilstm, epochs=1, batch_size=32, verbose=1)
 
 # Create the model
 my_model1 = cnnbilstm()
@@ -244,14 +244,13 @@ print("Overall Confusion Matrix:\n", cm)
 cm_names = pd.DataFrame(cm, index=class_names, columns=class_names) # Create a DataFrame for the confusion matrix
 
 # Define class labels
-class_labels = ['Dos', 'Normal', 'Prob_Pred', 'R2L', 'U2R']
-
+class_labels =  ['Analysis', 'Backdoor' ,  'DoS' , 'Exploits',  'fuzzers' ,  'Generic', 'Normal',    'Reconnaissance' ,  'Shellcode' , ' Worms']
 # Calculating the TP
-true_positives = [cm[i][i] for i in range(5)]
-false_negatives = [sum(cm[i]) - true_positives[i] for i in range(5)]
+true_positives = [cm[i][i] for i in range(10)]
+false_negatives = [sum(cm[i]) - true_positives[i] for i in range(10)]
 
 # Applying formula for DR
-detection_rates = [true_positives[i] / (true_positives[i] + false_negatives[i]) for i in range(5)]
+detection_rates = [true_positives[i] / (true_positives[i] + false_negatives[i]) for i in range(10)]
 
 # Print DR /class
 for i, rate in enumerate(detection_rates):
@@ -259,10 +258,10 @@ for i, rate in enumerate(detection_rates):
 
 # Calculate ing FP and TN per class
 false_positives = [sum(cm[i]) - cm[i][i] for i in range(10)]
-true_negatives = [sum(cm[j][i] for j in range(5)) - cm[i][i] for i in range(5)]
+true_negatives = [sum(cm[j][i] for j in range(10)) - cm[i][i] for i in range(5)]
 
 # Calculatinf FPR
-false_positive_rates = [false_positives[i] / (false_positives[i] + true_negatives[i]) for i in range(5)]
+false_positive_rates = [false_positives[i] / (false_positives[i] + true_negatives[i]) for i in range(10)]
 
 # Print FPR /class
 for i, rate in enumerate(false_positive_rates):

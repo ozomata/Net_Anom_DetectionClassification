@@ -1,4 +1,10 @@
+"""""
+Ozomata Asun  
+26218999
 
+Aknowledgment: Part of the dataprocessing and the model definition were gotten from the work of (Sinha and Manollas, 2020)Efficient-CNN-BiLSTM-for-Network-IDS
+
+"""""
 import sys
 import numpy as np 
 from numpy import where
@@ -15,6 +21,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.utils.multiclass import unique_labels
 from scikeras.wrappers import KerasClassifier
 from itertools import cycle
+from keras.models import save_model
 
 from keras.callbacks import Callback
 from keras.models import Sequential
@@ -126,13 +133,13 @@ print('Original dataset shape', Counter(y))
 print('Resample dataset shape', Counter( y_smote))
 
 
-# Encode labels into categorical format
+# Labbel Encoding
 label_encoder = LabelEncoder()
 Y= label_encoder.fit_transform(y)
 
 #*******************************************
 
-# Defining Model
+# Defining  the classifier model
 def cnnbilstm():
    
     model = Sequential()
@@ -153,7 +160,7 @@ def cnnbilstm():
     return model
 
 # create model
-my_model = KerasClassifier(model=cnnbilstm, epochs=20, batch_size=64, verbose=1)
+my_model = KerasClassifier(model=cnnbilstm, epochs=1, batch_size=64, verbose=1)
 
 # Create the model
 my_model1 = cnnbilstm()
@@ -208,7 +215,9 @@ for train_idx, test_idx in cv.split(X, Y):
 # Predict probabilities for each class
 y_prob = pipeline.predict_proba(X_test)
 
-
+# Save the model
+   
+my_model1.save('model.h5')
 
 
 # Compute ROC curve and AUC for each class
